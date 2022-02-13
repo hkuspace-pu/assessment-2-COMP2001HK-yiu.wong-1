@@ -58,7 +58,6 @@ public class ProgrammeSQL {
 		q.setParameter(1, code);
 		int result = q.executeUpdate();
 
-		
 /*		String sql = "delete A2P1.Programmes where code = :code";
 		Query q = em.createNativeQuery(sql);
 		q.setParameter("code", code);

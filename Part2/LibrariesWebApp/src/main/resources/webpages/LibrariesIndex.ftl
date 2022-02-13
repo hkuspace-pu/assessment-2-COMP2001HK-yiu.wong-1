@@ -27,13 +27,50 @@ p {
 a {
 	font-size:16px;
 }
+.button {
+	background-color: #bfbfbd;
+	border: solid 1px #bfbfbd;
+	padding: 10px 10px 10px 10px;
+	font-size: 150%
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+a:link {
+	text-decoration: none;
+}
+a:hover {
+	background-color: #e6e6e3;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+div.container4 {
+    height: 10em;
+    position: relative }
+div.container4 p {
+    margin: 0;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+.center {
+	text-align: center;
+}
 </style>
 </head>
 <body>
-<h1>Libraries in Plymouth</h1>
+<h1 class="center">Libraries in Plymouth</h1>
 <br>
-<table class="table">
-	<thead class="thead-light">
+<div>
+<table class="table table-striped">
+	<thead class="thead-dark">
 		<tr>
 			<th scope="col" font-size="20">Project Vision</th>
 		</tr>
@@ -49,6 +86,7 @@ a {
 			</div>
 		</th>
 </table>
+</div>
 <br>
 
 <table class="table table-striped">
@@ -66,8 +104,8 @@ a {
   </tbody>
 </table>
 <br>
-<div>
-	<p><a href="<@spring.url '/website/html/ftl'/>" target="_blank"> Go to data page</a></p>
+<div class="container4">
+	<p><a class="button" href="<@spring.url '/website/html/ftl'/>" target="_blank"> Go to data page</a></p>
 </div>
 <br><br>
 

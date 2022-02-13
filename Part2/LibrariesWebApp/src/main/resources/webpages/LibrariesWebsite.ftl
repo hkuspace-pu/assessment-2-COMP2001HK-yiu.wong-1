@@ -30,14 +30,17 @@ div {
 	margin-top 20px;
 	margin-bottom 20px;
 }
+.center {
+	text-align: center;
+}
 </style>
 </head>
 
 <body>
 	<div>
-		<h2>Location of Libraries in Plymouth</h2>
+		<h2 class="center">Location of Libraries in Plymouth</h2>
 	</div>
-
+	<br><br>
 	<table class="table">
   		<thead class="thead-dark">
 			<tr>

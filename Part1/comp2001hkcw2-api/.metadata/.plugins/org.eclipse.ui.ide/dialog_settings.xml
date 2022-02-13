@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Sageras\OneDrive\PU\2021\COMP2001HKInfoManAndRetrieval\assessment-2-COMP2001HK-yiu.wong-1\Part1\comp2001hkcw2-api"/>
 			<item value="C:\Users\Sageras\OneDrive\University of Plymouth\2021\COMP2001HK Information Management and Retrieval\Assessment 2\assessment-2-COMP2001HK-yiu.wong-1\Part1\comp2001hkcw2-api"/>
 		</list>
 	</section>

@@ -1,0 +1,10 @@
+server:
+  port: 1129
+  servlet:
+    context-path: /libraries
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 99
+
+logging:
+  config: classpath:logback.xml

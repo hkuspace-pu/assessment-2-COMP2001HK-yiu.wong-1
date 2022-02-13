@@ -28,7 +28,8 @@ public class LibrariesApiController
 {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LibrariesApiController.class);
-			
+	
+		
 	@GetMapping ("/api/geojson/libraries")
 	public String getJson() throws IOException
 	{
@@ -50,9 +51,7 @@ public class LibrariesApiController
 			Map<String, Object> map = f.getProperties();
 			LibrariesGeoJson lgjson = om.convertValue(map, LibrariesGeoJson.class);
 			lgjList.add(lgjson);
-//			logger.info("l[{}]: {}", i, lgjson.getLibraryName());
-			
-//			return lgjList;
+			logger.info("l[{}]: {}", i, lgjson.getLibraryName());
 		}
 		
 		//Step 2
@@ -82,13 +81,16 @@ public class LibrariesApiController
 		return jsonldStr;
 		
 	}
+}
 
-//	private List<LibrariesGeoJson> returnList() throws IOException 
-//	{
-//		
+/*
+	private List<LibrariesGeoJson> returnList() throws IOException 
+	{
+		
 
 
 		
-//		return resultList;
-//	}
+		return resultList;
+	}
 }
+*/

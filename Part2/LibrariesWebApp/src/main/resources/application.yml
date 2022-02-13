@@ -5,6 +5,12 @@ server:
   tomcat:
     uri-encoding: UTF-8
     max-threads: 99
-
+spring:
+  freemarker:
+    template-loader-path: classpath:/webpages/
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    cache: false
 logging:
   config: classpath:logback.xml

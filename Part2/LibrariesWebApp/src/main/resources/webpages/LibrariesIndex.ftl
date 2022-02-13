@@ -31,16 +31,43 @@ a {
 </head>
 <body>
 <h1>Libraries in Plymouth</h1>
-<br><br>
-<h3>Project Vision</h3>
-<p> tjeklejtklw te klrjtlw trjktjk lssrj ktlsjkltjlk tjkrlej ltrjseklt tjkrlesjl ktjkrl tjtklr stljreklt sgsfdfdas</p>
-<br><br>
-<div>
-	<p>Original Dataset: <a href="https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson" target="_blank">https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson</a></p>
-</div>
+<br>
+<table class="table">
+	<thead class="thead-light">
+		<tr>
+			<th scope="col" font-size="20">Project Vision</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<th scope="row">
+			<div>
+			<p>In order to help people in Plymouth to locate and get info about their libraries, this web application</p> 
+			<p>is created. Detailed location of all libraries in Plymouth are listed. Not only with the addresses but</p> 
+			<p>also the map coordinates (latitude & longitude) of each library are provided. Furthermore, to help users</p> 
+			<p>to find out more about the libraries, websites are also listed.</p>
+			</div>
+		</th>
+</table>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Original Dataset</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Location of Libraries in Plymouth</td>
+      <td><a href="https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson" target="_blank">https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson</a></td>
+    </tr>
+  </tbody>
+</table>
 <br>
 <div>
-	<p>Please click this <a href="<@spring.url '/website/html/ftl'/>" target="_blank">Link</a> to go to the data page</p>
+	<p><a href="<@spring.url '/website/html/ftl'/>" target="_blank"> Go to data page</a></p>
 </div>
 <br><br>
 

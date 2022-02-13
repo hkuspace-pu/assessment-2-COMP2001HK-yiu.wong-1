@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.comp2001hkcw2api.model.Programme;
-import com.comp2001hkcw2api.sqlquery.ProgrammeSQL;
+import com.comp2001hkcw2api.model.ProgrammeSQL;
 
 @RestController
 public class ProgrammeController {

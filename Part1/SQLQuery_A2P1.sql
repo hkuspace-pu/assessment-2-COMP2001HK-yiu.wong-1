@@ -118,3 +118,57 @@ CREATE VIEW [A2P1].[StuProgView] AS
 		LEFT JOIN A2P1.Programmes v ON v.Code = s.Programme_Code;
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [A2P1].[Create_Programme]
+	@title varchar(50)
+as
+begin
+	insert into A2P1.Programmes (Title) values (@title);
+	print 'A new programme is created successfully!';
+end
+
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [A2P1].[Update_Programme]
+	@programmeCode int,
+	@title varchar(50)
+as
+begin
+	if exists (select * from A2P1.Programmes where Code = @programmeCode)
+	begin
+		update A2P1.Programmes set Title=@title where Code = @programmeCode
+		print 'The programme is updated!';
+	end
+	else
+	begin
+		print 'Programme NOT exist!';
+	end
+end
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [A2P1].[Delete_Programme]
+	@programmeCode int
+as
+begin
+	if exists (select * from A2P1.Programmes where Code = @programmeCode)
+	begin
+		delete from A2P1.Programmes where Code = @programmeCode
+		print 'Programme is deleted successfully!';
+	end
+	else
+	begin
+		print 'Programme NOT found!'
+	end	
+end
+GO

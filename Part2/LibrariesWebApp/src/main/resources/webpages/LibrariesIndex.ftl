@@ -98,7 +98,6 @@
 							academic papers… etc… Yet, not all printed books have digital version available online, then, in order to get access 
 							to the hardcopy, library is the best place to go. However, since people are not used to go to a library, they may 
 							have difficulty in locating one nearby, therefore, this web application is designed and created.</p>
-							<br>
 							</p>
 							<p>To facilitate people in Plymouth to locate and get information about their local libraries, this web application 
 							is developed. Users can get detailed location of all libraries in Plymouth which are listed on the data page. 

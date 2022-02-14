@@ -46,7 +46,8 @@ Tools used:
 1. schema.org, "https://schema.org/docs/schemas.html"
 2. JSON-LD playground, "https://json-ld.org/playground/"
 
-Created & Own by Benjamin Yiu Wong
-Maintain by Benjamin Yiu Wong
-Created on 10 Feb 2022
-Last Update: 14 Feb 2022
+====================================
+1. Created & Own by Benjamin Yiu Wong
+2. Maintain by Benjamin Yiu Wong
+3. Created on 10 Feb 2022
+4. Last Update: 14 Feb 2022

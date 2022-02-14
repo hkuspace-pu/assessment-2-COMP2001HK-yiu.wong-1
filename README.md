@@ -4,14 +4,12 @@ assessment-2-benjaminywong created by GitHub Classroom
 This projects is developed by Java with Spring Boot Framework, Freemaker Framework and Bootstrap Framework. 
 Both part 1 & part 2 use MVC design pattern to be developed. 
 
-================================
 Assessment 2 Part 1 API Showcase
 ================================
 
 Framework used:
 1. Spring Boot
 
-===================================
 Assessment 2 Part 2 Web Application
 ===================================
 

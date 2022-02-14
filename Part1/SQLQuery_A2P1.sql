@@ -1,50 +1,120 @@
-CREATE TABLE A2P1.Programmes (
-    Code INT NOT NULL IDENTITY(201,1),
-    Title VARCHAR (50) NOT NULL,
-    PRIMARY KEY (Code)
-)
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [A2P1].[Programmes](
+	[Code] [int] IDENTITY(201,1) NOT NULL,
+	[Title] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [A2P1].[Aduiting] on [A2P1].[Programmes] after UPDATE as 
+begin
+	insert into A2P1.Audit (
+		Change,
+		Code,
+		Title
+	)
+	values(
+		'Update',
+		(select code from deleted),
+		(select title from deleted)
+	);
+end
+GO
+ALTER TABLE [A2P1].[Programmes] ENABLE TRIGGER [Aduiting]
+GO
 
-INSERT INTO A2P1.Programmes (Title) VALUES
-('Data Science'),
-('Artificial Intelligence'),
-('Database Management'),
-('Cybersecurity'),
-('Software Engineering'),
-('Cryptography');
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [A2P1].[Projects](
+	[ProjectId] [int] IDENTITY(301,1) NOT NULL,
+	[Title] [varchar](20) NOT NULL,
+	[Description] [varchar](100) NULL,
+	[Year] [char](4) NULL,
+	[Thumbnail] [varchar](255) NULL,
+	[Poster] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ProjectId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-CREATE TABLE A2P1.Projects (
-    ProjectId INT NOT NULL IDENTITY(301,1),
-    Title VARCHAR (20) NOT NULL,
-    Description VARCHAR (100),
-    Year CHAR (4),
-    Thumbnail VARCHAR (255),
-    Poster VARCHAR (255),
-    PRIMARY KEY (ProjectId)
-)
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [A2P1].[Students](
+	[StudentId] [int] IDENTITY(101,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Code] [int] NULL,
+	[ProjectId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[StudentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [A2P1].[Students]  WITH CHECK ADD FOREIGN KEY([Code])
+REFERENCES [A2P1].[Programmes] ([Code])
+GO
+ALTER TABLE [A2P1].[Students]  WITH CHECK ADD FOREIGN KEY([ProjectId])
+REFERENCES [A2P1].[Projects] ([ProjectId])
+GO
 
-INSERT INTO A2P1.Projects (Title, Description, Year, Thumbnail, Poster) VALUES
-('Programming', 'Java Programming' , 2022, 'tn001.jpg' , 'p001.jpg'),
-('Database Design', 'MySQL System Design' , 2022, 'tn002.jpg' , 'p002.jpg'),
-('Cryptography', 'Encryption and Decryption' , 2022, 'tn003.jpg' , 'p003.jpg'),
-('Integrity', 'Hashing' , 2022, NULL , NULL),
-('Big Data', 'Data Mining' , 2022, NULL , NULL),
-('Security', 'Risk Analysis and Management' , 2022, 'tn004.jpg' , 'p004.jpg');
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [A2P1].[Student_Programme](
+	[Student_Id] [int] NOT NULL,
+	[Programme_Code] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Student_Id] ASC,
+	[Programme_Code] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-CREATE TABLE A2P1.Students (
-    StudentId INT NOT NULL IDENTITY(101,1),
-    Name VARCHAR (50) NOT NULL,
-    Code INT,
-    ProjectId INT,
-    PRIMARY KEY (StudentId),
-    FOREIGN KEY (Code) REFERENCES A2P1.Programmes (Code),
-    FOREIGN KEY (ProjectId) REFERENCES A2P1.Projects (ProjectId)
-)
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [A2P1].[Audit](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Change] [varchar](50) NOT NULL,
+	[Code] [int] NOT NULL,
+	[Title] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
-INSERT INTO A2P1.Students (Name, Code, ProjectId) VALUES
-('Adam Smith', 201, 305),
-('Philip Writghts', 202, 301),
-('Emma Lee', 203, 302),
-('Ashley Cheung', 204, 306),
-('Michael Brown', 205, 301),
-('Gordan Johnson', 206, 303),
-('William Miller', 204, 304);
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [A2P1].[StuProgView] AS
+	SELECT 
+		V1.StudentId,
+		V1.Name AS StudentName,
+		v.Code AS ProgrammeCode,
+		v.Title AS ProgrammeTitle
+	FROM A2P1.Students V1
+		LEFT JOIN A2P1.Student_Programme s ON s.Student_Id = V1.StudentId
+		LEFT JOIN A2P1.Programmes v ON v.Code = s.Programme_Code;
+GO
+

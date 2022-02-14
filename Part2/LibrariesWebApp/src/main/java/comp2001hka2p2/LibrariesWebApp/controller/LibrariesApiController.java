@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import comp2001hka2p2.LibrariesWebApp.model.LibrariesGeoJson;
@@ -24,41 +25,29 @@ import comp2001hka2p2.LibrariesWebApp.model.LibrariesJsonLD;
 import ioinformarics.oss.jackson.module.jsonld.JsonldModule;
 
 @RestController
-public class LibrariesApiController 
-{
-	
+public class LibrariesApiController {
 	private static final Logger logger = LoggerFactory.getLogger(LibrariesApiController.class);
+
+	@GetMapping("/api/geojson/libraries")
+	public String getJson() throws IOException {
+		
+		ArrayList<LibrariesGeoJson> lgjList = getGenJson();
+		ArrayList<LibrariesJsonLD> ljldList = getJsonLD(lgjList);
+		String jsonldStr = getjsonLdString(ljldList);
+		return jsonldStr;
+	}
 	
-		
-	@GetMapping ("/api/geojson/libraries")
-	public String getJson() throws IOException
-	{
-		
-		//Step 1
-		
-//		URL url = new URL("https://battlecat.ddns.net/aaa.json");
-		
-		URL url = new URL("https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson");
-		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-		InputStream is = con.getInputStream();
-		ObjectMapper om = new ObjectMapper();
-		FeatureCollection fc = om.readValue(is, FeatureCollection.class);
-		List<Feature> jsonList = fc.getFeatures();
-		List<LibrariesGeoJson> lgjList = new ArrayList<LibrariesGeoJson>();
-		for (int i = 0; i < jsonList.size(); i ++)
-		{
-			Feature f = jsonList.get(i);
-			Map<String, Object> map = f.getProperties();
-			LibrariesGeoJson lgjson = om.convertValue(map, LibrariesGeoJson.class);
-			lgjList.add(lgjson);
-			logger.info("l[{}]: {}", i, lgjson.getLibraryName());
-		}
-		
-		//Step 2
-		
-		List<LibrariesJsonLD> ljldList = new ArrayList<LibrariesJsonLD>();
-		for (int i = 0; i < lgjList.size(); i++)
-		{
+	public String getjsonLdString(ArrayList<LibrariesJsonLD> ljldList) throws IOException {
+		ObjectMapper om2 = new ObjectMapper();
+		JsonldModule jldm = new JsonldModule();
+		om2.registerModule(jldm);
+		String jsonldStr = om2.writeValueAsString(ljldList);
+		return jsonldStr;
+	}
+	
+	public ArrayList<LibrariesJsonLD> getJsonLD(ArrayList<LibrariesGeoJson> lgjList) {
+		ArrayList<LibrariesJsonLD> ljldList = new ArrayList<LibrariesJsonLD>();
+		for (int i = 0; i < lgjList.size(); i++) {
 			LibrariesGeoJson lgjson = lgjList.get(i);
 			LibrariesJsonLD ljsonLd = new LibrariesJsonLD();
 			ljsonLd.setFid(lgjson.getFid());
@@ -72,25 +61,28 @@ public class LibrariesApiController
 			ljsonLd.setWebsite(lgjson.getWebsite());
 			ljldList.add(ljsonLd);
 		}
+		return ljldList;
+	}
+	
+	public ArrayList<LibrariesGeoJson> getGenJson() throws IOException {
+		URL url = new URL(
+				"https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson");
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		InputStream is = con.getInputStream();
+		ObjectMapper om = new ObjectMapper();
+		FeatureCollection fc = om.readValue(is, FeatureCollection.class);
+		List<Feature> jsonList = fc.getFeatures();
+		ArrayList<LibrariesGeoJson> lgjList = new ArrayList<LibrariesGeoJson>();
+		for (int i = 0; i < jsonList.size(); i++) {
+			Feature f = jsonList.get(i);
+			Map<String, Object> map = f.getProperties();
+			LibrariesGeoJson lgjson = om.convertValue(map, LibrariesGeoJson.class);
+			lgjList.add(lgjson);
+			logger.info("l[{}]: {}", i, lgjson.getFid());
+		}
 		
-		ObjectMapper om2 = new ObjectMapper();
-		JsonldModule jldm = new JsonldModule();
-		om2.registerModule(jldm);
-		String jsonldStr = om2.writeValueAsString(ljldList);
-		
-		return jsonldStr;
-		
+		return lgjList;
 	}
 }
 
-/*
-	private List<LibrariesGeoJson> returnList() throws IOException 
-	{
-		
 
-
-		
-		return resultList;
-	}
-}
-*/

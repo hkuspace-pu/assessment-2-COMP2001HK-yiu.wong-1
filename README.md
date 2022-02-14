@@ -29,6 +29,14 @@ format. Humane readable part is presented as a table on the data page of the web
 JSON-LD can be downloaded from the link on the index page, also the link to the original source of the dataset is 
 provided. 
 
+Info of the Original dataset:
+Location of Libraries in Plymouth 2018
+https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson
+Author: Phil Jones
+Maintainer: Phil Jones
+Created on 4 March 2016 
+Last updated on 26 October 2018
+
 Frameworks used:
 1. Spring Boot
 2. Freemaker

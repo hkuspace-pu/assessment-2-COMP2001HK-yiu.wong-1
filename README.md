@@ -30,7 +30,7 @@ JSON-LD can be downloaded from the link on the index page, also the link to the 
 provided. 
 
 Info of the Original dataset:
-Location of Libraries in Plymouth 2018
+Location of Libraries in Plymouth 2018 
 https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson
 Author: Phil Jones
 Maintainer: Phil Jones
